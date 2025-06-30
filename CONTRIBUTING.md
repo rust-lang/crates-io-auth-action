@@ -41,6 +41,21 @@ we added the `dist/` directory to the [`.gitattributes`](.gitattributes) file wi
 You can learn more about this in the
 [GitHub docs](https://docs.github.com/en/repositories/working-with-files/managing-files/customizing-how-changed-files-appear-on-github).
 
+#### Tree-shaking
+
+Unfortunately, a bug in the `"@actions/core"` library prevents
+[tree-shaking](https://rollupjs.org/introduction/#tree-shaking) to work.
+
+This means that the `dist/` directory will contain more code than necessary
+because the final javascript file will contain all the files imported, even
+if we just import a few constants or functions.
+
+This is why if we import something from `post.ts` in `main.ts` or vice versa,
+the action will run both `main.ts` and `post.ts` code.
+Therefore, it is important that `main.ts` and `post.ts` don't depend on each other.
+
+This issue is tracked in [#5](https://github.com/rust-lang/crates-io-auth-action/issues/5).
+
 ### Formatting
 
 We use [Prettier](https://prettier.io/) to format TypeScript, Markdown, and YAML files.
