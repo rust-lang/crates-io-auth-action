@@ -1,0 +1,149 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+  pull_request:
+
+permissions: {}
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Test
+        run: |
+          npm run test
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Lint
+        run: |
+          npm run lint
+
+  format:
+    name: Format
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install Prettier
+        run: npm ci
+
+      - name: Format
+        run: npx prettier --check .
+
+  zizmor:
+    name: Zizmor
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run zizmor
+        uses: zizmorcore/zizmor-action@f52a838cfabf134edcbaa7c8b3677dde20045018 # v0.1.1
+        with:
+          persona: pedantic
+          # Don't use GitHub advanced security.
+          # Instead, fail if there's a security issue.
+          advanced-security: false
+
+  package:
+    name: Package
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Check is packaged
+        run: |
+          # Compile to single js files.
+          npm run package
+
+          # Assert that the git diff is empty.
+          git diff --exit-code || (echo "Git diff is not empty. Please run 'npm run package' and commit the changes." && exit 1)
+
+  # This job tests the action directly by running it against a mock server.
+  action-test:
+    name: Action Test
+    runs-on: ubuntu-24.04
+
+    # Required for OpenID Connect token retrieval.
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Start mock crates.io server
+        run: |
+          # Build the mock server in advance so that the binary is already built
+          # when we start checking the health endpoint.
+          manifest_path="--manifest-path=mock/Cargo.toml"
+          cargo build $manifest_path
+          # Run the mock server in the background.
+          cargo run   $manifest_path &
+
+          # Wait for server to be ready.
+          retry_count=0
+          max_retries=3
+          until curl -s http://localhost:3000/health > /dev/null 2>&1; do
+            echo "Waiting for mock server to start... (attempt $((retry_count + 1))/$max_retries)"
+            sleep 2
+            retry_count=$((retry_count + 1))
+            if [ $retry_count -ge $max_retries ]; then
+              echo "Mock server failed to start after $max_retries attempts"
+              exit 1
+            fi
+          done
+          echo "Mock server is ready"
+
+      - name: Run trusted publishing action
+        id: trusted-publishing
+        uses: ./ # Uses the action in the root directory.
+        with:
+          url: "http://localhost:3000" # Mock server url.
+
+      - name: Assert action output
+        env:
+          TOKEN: ${{ steps.trusted-publishing.outputs.token }}
+        run: |
+          if [ "$TOKEN" != "mock-token" ]; then
+            echo "Expected token to be 'mock-token', but got '$TOKEN'"
+            exit 1
+          fi
+          echo "Token assertion passed. Token value: $TOKEN"

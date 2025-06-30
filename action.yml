@@ -1,0 +1,19 @@
+name: "crates-io-auth-action"
+description: "Retrieve a temporary crates.io access token using trusted publishing."
+inputs:
+  url:
+    description: "cargo registry url, defaults to crates.io"
+    required: false
+    default: "https://crates.io"
+    type: string
+outputs:
+  token:
+    description: "The temporary access token you can use to login with cargo"
+    value: ${{ steps.request.outputs.token }}
+branding:
+  icon: "key"
+  color: "orange"
+runs:
+  using: "node20"
+  main: "dist/main.js"
+  post: "dist/post.js"

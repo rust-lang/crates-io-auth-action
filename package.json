@@ -1,0 +1,42 @@
+{
+    "name": "trusted-publishing-action-draft",
+    "version": "0.0.0",
+    "description": "Get a temporary access token that you can use to interact with crates.io.",
+    "private": true,
+    "scripts": {
+        "package": "npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+        "format": "npx prettier --write .",
+        "lint": "npx eslint",
+        "test": "vitest"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rust-lang/crates-io-auth-action.git"
+    },
+    "dependencies": {
+        "@actions/core": "^1.11.1"
+    },
+    "license": "MIT",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/rust-lang/crates-io-auth-action/issues"
+    },
+    "homepage": "https://github.com/rust-lang/crates-io-auth-action#readme",
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^28.0.3",
+        "@rollup/plugin-node-resolve": "^16.0.1",
+        "@rollup/plugin-typescript": "^12.1.2",
+        "@types/node": "^20",
+        "eslint": "^9.28.0",
+        "msw": "^2.10.2",
+        "prettier": "^3.5.3",
+        "rollup": "^4.43.0",
+        "tslib": "^2.8.1",
+        "typescript": "^5.8.3",
+        "typescript-eslint": "^8.34.0",
+        "vitest": "^3.2.4"
+    }
+}
