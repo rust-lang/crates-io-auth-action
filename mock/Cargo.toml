@@ -1,0 +1,10 @@
+[package]
+name = "mock"
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+axum = "0.8.4"
+serde = { version = "1.0.219", features = ["derive"] }
+tokio = { version = "1.45.1", features = ["rt-multi-thread"] }

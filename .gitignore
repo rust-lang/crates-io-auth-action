@@ -1,0 +1,6 @@
+.DS_Store
+.vscode
+.idea
+mock/target
+node_modules/
+*.js.map
