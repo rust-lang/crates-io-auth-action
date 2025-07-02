@@ -67,7 +67,7 @@ jobs:
           persist-credentials: false
 
       - name: Run zizmor
-        uses: zizmorcore/zizmor-action@f52a838cfabf134edcbaa7c8b3677dde20045018 # v0.1.1
+        uses: zizmorcore/zizmor-action@1cc8f934e6fad1414fbfc420bd02b0c325d9daab # v1.11.0
         with:
           persona: pedantic
           # Don't use GitHub advanced security.
