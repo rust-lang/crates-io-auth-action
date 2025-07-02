@@ -8,6 +8,11 @@ interface ErrorResponse {
     errors: Array<{ detail: string }>;
 }
 
+type UserAgent = {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    "User-Agent": string;
+};
+
 /** If true, the compiler considers `value` of type ErrorResponse */
 function isErrorResponse(value: unknown): value is ErrorResponse {
     if (typeof value !== "object" || value === null) {
@@ -69,6 +74,22 @@ export async function throwHttpErrorMessage(
 
 export function getTokensEndpoint(registryUrl: string): string {
     return `${registryUrl}/api/v1/trusted_publishing/tokens`;
+}
+
+function userAgentValue(): string {
+    const version = "v1";
+
+    // TODO: read the package name and version from package.json
+
+    return `crates-io-auth-action/${version}`;
+}
+
+export function getUserAgent(): UserAgent {
+    const userAgent = userAgentValue();
+    return {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        "User-Agent": userAgent,
+    };
 }
 
 export function runAction(fn: () => Promise<void>): void {

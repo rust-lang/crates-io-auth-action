@@ -6,6 +6,7 @@ import {
     throwHttpErrorMessage,
     TOKEN_KEY,
     REGISTRY_URL_KEY,
+    getUserAgent,
 } from "./utils.js";
 
 runAction(run);
@@ -61,13 +62,17 @@ async function requestTrustedPublishingToken(
     jwtToken: string,
 ): Promise<string> {
     const tokenUrl = getTokensEndpoint(registryUrl);
-    core.info(`Requesting token from: ${tokenUrl}`);
+    const userAgent = getUserAgent();
+    core.info(
+        `Requesting token from: ${tokenUrl}. User agent: ${userAgent["User-Agent"]}`,
+    );
 
     const response = await fetch(tokenUrl, {
         method: "POST",
         headers: {
             /* eslint-disable  @typescript-eslint/naming-convention */
             "Content-Type": "application/json",
+            ...userAgent,
         },
         body: JSON.stringify({ jwt: jwtToken }),
     });

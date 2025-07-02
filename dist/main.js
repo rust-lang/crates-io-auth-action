@@ -27313,6 +27313,18 @@ async function throwHttpErrorMessage(operation, response) {
 function getTokensEndpoint(registryUrl) {
     return `${registryUrl}/api/v1/trusted_publishing/tokens`;
 }
+function userAgentValue() {
+    const version = "v1";
+    // TODO: read the package name and version from package.json
+    return `crates-io-auth-action/${version}`;
+}
+function getUserAgent() {
+    const userAgent = userAgentValue();
+    return {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        "User-Agent": userAgent,
+    };
+}
 function runAction(fn) {
     fn().catch((error) => {
         const errorMessage = error instanceof Error ? error.message : String(error);
@@ -27353,12 +27365,14 @@ async function getJwtToken(audience) {
 }
 async function requestTrustedPublishingToken(registryUrl, jwtToken) {
     const tokenUrl = getTokensEndpoint(registryUrl);
-    coreExports.info(`Requesting token from: ${tokenUrl}`);
+    const userAgent = getUserAgent();
+    coreExports.info(`Requesting token from: ${tokenUrl}. User agent: ${userAgent["User-Agent"]}`);
     const response = await fetch(tokenUrl, {
         method: "POST",
         headers: {
             /* eslint-disable  @typescript-eslint/naming-convention */
             "Content-Type": "application/json",
+            ...userAgent,
         },
         body: JSON.stringify({ jwt: jwtToken }),
     });
