@@ -147,3 +147,29 @@ jobs:
             exit 1
           fi
           echo "Token assertion passed. Token value: $TOKEN"
+
+  rustfmt:
+    name: Rustfmt
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Check formatting
+        run: cargo fmt --all --check
+        working-directory: mock
+
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Clippy check
+        run: cargo clippy --all-targets --all-features --workspace -- -D warnings
+        working-directory: mock
