@@ -5,6 +5,7 @@ import {
     TOKEN_KEY,
     REGISTRY_URL_KEY,
     throwHttpErrorMessage,
+    getUserAgent,
 } from "./utils.js";
 
 runAction(cleanup);
@@ -37,6 +38,7 @@ async function revokeToken(registryUrl: string, token: string): Promise<void> {
         headers: {
             /* eslint-disable  @typescript-eslint/naming-convention */
             Authorization: `Bearer ${token}`,
+            ...getUserAgent(),
         },
     });
 

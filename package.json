@@ -1,6 +1,6 @@
 {
-    "name": "trusted-publishing-action-draft",
-    "version": "0.0.0",
+    "name": "crates-io-auth-action",
+    "version": "1.0.0",
     "description": "Get a temporary access token that you can use to interact with crates.io.",
     "private": true,
     "scripts": {
