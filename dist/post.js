@@ -19832,6 +19832,46 @@ var core2 = __toESM(require_core());
 
 // src/utils.ts
 var core = __toESM(require_core());
+
+// package.json
+var package_default = {
+  name: "crates-io-auth-action",
+  version: "1.0.0",
+  description: "Get a temporary access token that you can use to interact with crates.io.",
+  private: true,
+  scripts: {
+    package: "tsup",
+    format: "npx prettier --write .",
+    lint: "npx eslint",
+    test: "vitest"
+  },
+  engines: {
+    node: ">=20"
+  },
+  repository: {
+    type: "git",
+    url: "git+https://github.com/rust-lang/crates-io-auth-action.git"
+  },
+  license: "MIT",
+  bugs: {
+    url: "https://github.com/rust-lang/crates-io-auth-action/issues"
+  },
+  homepage: "https://github.com/rust-lang/crates-io-auth-action#readme",
+  devDependencies: {
+    "@actions/core": "^1.11.1",
+    "@types/node": "^20",
+    eslint: "^9.28.0",
+    msw: "^2.10.2",
+    prettier: "^3.5.3",
+    tslib: "^2.8.1",
+    tsup: "^8.0.0",
+    typescript: "^5.8.3",
+    "typescript-eslint": "^8.34.0",
+    vitest: "^3.2.4"
+  }
+};
+
+// src/utils.ts
 var TOKEN_KEY = "token";
 var REGISTRY_URL_KEY = "registryUrl";
 function isErrorResponse(value) {
@@ -19874,8 +19914,9 @@ function getTokensEndpoint(registryUrl) {
   return `${registryUrl}/api/v1/trusted_publishing/tokens`;
 }
 function userAgentValue() {
-  const packageVersion = "1.0.0";
-  return `crates-io-auth-action/${packageVersion}`;
+  const packageName = package_default.name;
+  const packageVersion = package_default.version;
+  return `${packageName}/${packageVersion}`;
 }
 function getUserAgent() {
   const userAgent = userAgentValue();
