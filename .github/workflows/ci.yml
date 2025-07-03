@@ -98,6 +98,8 @@ jobs:
   action-test:
     name: Action Test
     runs-on: ubuntu-24.04
+    # This job fails in forks, because it requires `id-token: write` permission.
+    if: github.repository_owner == 'rust-lang'
 
     # Required for OpenID Connect token retrieval.
     permissions:
@@ -182,7 +184,6 @@ jobs:
       - format
       - zizmor
       - package
-      - action-test
       - rustfmt
       - clippy
     # !cancelled() executes the job regardless of whether the previous jobs passed, failed or get skipped.
