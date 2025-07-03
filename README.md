@@ -1,5 +1,5 @@
 # crates-io-auth-action
-
+test
 Get a temporary access token to interact with crates.io using trusted publishing.
 
 ## Usage
