@@ -7,13 +7,13 @@
 
 
 
-var _chunkXAJAUINDjs = require('./chunk-XAJAUIND.js');
+var _chunkOLZEGNJMjs = require('./chunk-OLZEGNJM.js');
 
 // src/main.ts
-var core2 = _chunkXAJAUINDjs.__toESM.call(void 0, _chunkXAJAUINDjs.require_core.call(void 0, ));
+var core2 = _chunkOLZEGNJMjs.__toESM.call(void 0, _chunkOLZEGNJMjs.require_core.call(void 0, ));
 
 // src/registry_url.ts
-var core = _chunkXAJAUINDjs.__toESM.call(void 0, _chunkXAJAUINDjs.require_core.call(void 0, ));
+var core = _chunkOLZEGNJMjs.__toESM.call(void 0, _chunkOLZEGNJMjs.require_core.call(void 0, ));
 function getAudienceFromUrl(url) {
   const audience = url.replace(/^https?:\/\//, "");
   if (audience.startsWith("http://") || audience.startsWith("https://")) {
@@ -32,7 +32,7 @@ function getRegistryUrl() {
 }
 
 // src/main.ts
-_chunkXAJAUINDjs.runAction.call(void 0, run);
+_chunkOLZEGNJMjs.runAction.call(void 0, run);
 async function run() {
   checkPermissions();
   const registryUrl = getRegistryUrl();
@@ -40,8 +40,8 @@ async function run() {
   const jwtToken = await getJwtToken(audience);
   const token = await requestTrustedPublishingToken(registryUrl, jwtToken);
   setTokenOutput(token);
-  core2.saveState(_chunkXAJAUINDjs.TOKEN_KEY, token);
-  core2.saveState(_chunkXAJAUINDjs.REGISTRY_URL_KEY, registryUrl);
+  core2.saveState(_chunkOLZEGNJMjs.TOKEN_KEY, token);
+  core2.saveState(_chunkOLZEGNJMjs.REGISTRY_URL_KEY, registryUrl);
 }
 function checkPermissions() {
   if (process.env.ACTIONS_ID_TOKEN_REQUEST_URL === void 0 || !process.env.ACTIONS_ID_TOKEN_REQUEST_URL) {
@@ -60,8 +60,8 @@ async function getJwtToken(audience) {
   return jwtToken;
 }
 async function requestTrustedPublishingToken(registryUrl, jwtToken) {
-  const tokenUrl = _chunkXAJAUINDjs.getTokensEndpoint.call(void 0, registryUrl);
-  const userAgent = _chunkXAJAUINDjs.getUserAgent.call(void 0, );
+  const tokenUrl = _chunkOLZEGNJMjs.getTokensEndpoint.call(void 0, registryUrl);
+  const userAgent = _chunkOLZEGNJMjs.getUserAgent.call(void 0, );
   core2.info(
     `Requesting token from: ${tokenUrl}. User agent: ${userAgent["User-Agent"]}`
   );
@@ -75,14 +75,14 @@ async function requestTrustedPublishingToken(registryUrl, jwtToken) {
     body: JSON.stringify({ jwt: jwtToken })
   });
   if (!response.ok) {
-    await _chunkXAJAUINDjs.throwHttpErrorMessage.call(void 0, 
+    await _chunkOLZEGNJMjs.throwHttpErrorMessage.call(void 0, 
       "Failed to retrieve token from Cargo registry",
       response
     );
   }
   const tokenResponse = await response.json();
   if (!tokenResponse.token) {
-    await _chunkXAJAUINDjs.throwHttpErrorMessage.call(void 0, 
+    await _chunkOLZEGNJMjs.throwHttpErrorMessage.call(void 0, 
       "Failed to retrieve token from the Cargo registry response body",
       response
     );
@@ -92,7 +92,7 @@ async function requestTrustedPublishingToken(registryUrl, jwtToken) {
 }
 function setTokenOutput(token) {
   core2.setSecret(token);
-  core2.setOutput(_chunkXAJAUINDjs.TOKEN_KEY, token);
+  core2.setOutput(_chunkOLZEGNJMjs.TOKEN_KEY, token);
 }
 
 

@@ -9,6 +9,10 @@ on:
 
 permissions: {}
 
+env:
+  # renovate: datasource=npm depName=pnpm
+  PNPM_VERSION: 10.12.4
+
 jobs:
   test:
     name: Test
@@ -19,12 +23,17 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Install node dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Test
         run: |
-          npm run test
+          pnpm test
 
   lint:
     name: Lint
@@ -35,12 +44,17 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Install node dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
         run: |
-          npm run lint
+          pnpm lint
 
   format:
     name: Format
@@ -51,11 +65,16 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Install Prettier
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Format
-        run: npx prettier --check .
+        run: pnpm prettier --check .
 
   zizmor:
     name: Zizmor
@@ -74,22 +93,6 @@ jobs:
           # Instead, fail if there's a security issue.
           advanced-security: false
 
-  npm-install:
-    name: Lockfile up-to-date
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-
-      - name: Check if package-lock.json is up-to-date
-        run: |
-          npm install
-
-          # Assert that the git diff is empty.
-          git diff --exit-code || (echo "Git diff is not empty. Please run 'npm install' and commit the changes." && exit 1)
-
   package:
     name: Package
     runs-on: ubuntu-24.04
@@ -99,16 +102,21 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Install node dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Check is packaged
         run: |
           # Compile to single js files.
-          npm run package
+          pnpm package
 
           # Assert that the git diff is empty.
-          git diff --exit-code || (echo "Git diff is not empty. Please run 'npm run package' and commit the changes." && exit 1)
+          git diff --exit-code || (echo "Git diff is not empty. Please run 'pnpm package' and commit the changes." && exit 1)
 
   # This job tests the action directly by running it against a mock server.
   action-test:
@@ -200,7 +208,6 @@ jobs:
       - format
       - zizmor
       - package
-      - npm-install
       - rustfmt
       - action-test
       - clippy

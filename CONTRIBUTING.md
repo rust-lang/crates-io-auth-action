@@ -18,7 +18,7 @@ You can't run this action locally as it requires a GitHub environment.
 To install node dependencies, run:
 
 ```sh
-npm install
+pnpm install
 ```
 
 ### Packaging
@@ -29,7 +29,7 @@ compile the TypeScript code and its dependencies into a single file
 in the `dist/` directory:
 
 ```sh
-npm run package
+pnpm package
 ```
 
 This approach is inspired by the [typescript-action](https://github.com/actions/typescript-action)
@@ -62,7 +62,7 @@ We use [Prettier](https://prettier.io/) to format TypeScript, Markdown, and YAML
 To format all files, run:
 
 ```sh
-npx prettier --write .
+pnpm prettier --write .
 ```
 
 ### Linting
@@ -72,7 +72,7 @@ We use [ESLint](https://eslint.org/) for linting TypeScript files.
 To check for linting errors, run:
 
 ```sh
-npx eslint
+pnpm eslint
 ```
 
 ### Testing
@@ -86,7 +86,7 @@ There are two types of tests running in [ci.yml](.github/workflows/ci.yml):
   To run these tests locally, run:
 
   ```sh
-  npm run test
+  pnpm test
   ```
 
 ## Crates.io Documentation
