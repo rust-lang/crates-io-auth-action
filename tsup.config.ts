@@ -1,5 +1,7 @@
 import { defineConfig } from "tsup";
 
+let chunkNumber = 0;
+
 export default defineConfig({
     entry: ["src/main.ts", "src/post.ts"],
     format: ["cjs"],
@@ -10,4 +12,7 @@ export default defineConfig({
     target: "node20",
     clean: true,
     splitting: true,
+    esbuildOptions(options) {
+        options.chunkNames = `[name]${++chunkNumber}`;
+    },
 });
