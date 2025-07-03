@@ -19933,8 +19933,9 @@ function getTokensEndpoint(registryUrl) {
   return `${registryUrl}/api/v1/trusted_publishing/tokens`;
 }
 function userAgentValue() {
+  const packageName = package_default.name;
   const packageVersion = package_default.version;
-  return `crates-io-auth-action/${packageVersion}`;
+  return `${packageName}/${packageVersion}`;
 }
 function getUserAgent() {
   const userAgent = userAgentValue();

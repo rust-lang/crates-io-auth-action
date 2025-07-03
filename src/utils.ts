@@ -78,8 +78,9 @@ export function getTokensEndpoint(registryUrl: string): string {
 }
 
 function userAgentValue(): string {
+    const packageName: string = packageJson.name;
     const packageVersion: string = packageJson.version;
-    return `crates-io-auth-action/${packageVersion}`;
+    return `${packageName}/${packageVersion}`;
 }
 
 export function getUserAgent(): UserAgent {
