@@ -1,4 +1,5 @@
 import * as core from "@actions/core";
+import packageJson from "../package.json";
 
 export const TOKEN_KEY = "token";
 export const REGISTRY_URL_KEY = "registryUrl";
@@ -77,7 +78,7 @@ export function getTokensEndpoint(registryUrl: string): string {
 }
 
 function userAgentValue(): string {
-    const packageVersion = "1.0.0";
+    const packageVersion: string = packageJson.version;
     return `crates-io-auth-action/${packageVersion}`;
 }
 
