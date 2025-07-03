@@ -5,8 +5,8 @@
     "private": true,
     "scripts": {
         "package": "tsup",
-        "format": "npx prettier --write .",
-        "lint": "npx eslint",
+        "format": "prettier --write .",
+        "lint": "eslint",
         "test": "vitest"
     },
     "engines": {
@@ -25,6 +25,7 @@
         "@actions/core": "^1.11.1",
         "@types/node": "^20",
         "eslint": "^9.28.0",
+        "globals": "^16.3.0",
         "msw": "^2.10.2",
         "prettier": "^3.5.3",
         "tslib": "^2.8.1",
