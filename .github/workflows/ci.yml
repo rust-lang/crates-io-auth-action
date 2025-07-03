@@ -99,7 +99,7 @@ jobs:
     name: Action Test
     runs-on: ubuntu-24.04
     # This job fails in forks, because it requires `id-token: write` permission.
-    if: github.repository_owner == 'rust-lang'
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == 'rust-lang/crates-io-auth-action' }}
 
     # Required for OpenID Connect token retrieval.
     permissions:
