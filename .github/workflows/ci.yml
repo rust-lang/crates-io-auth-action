@@ -185,6 +185,7 @@ jobs:
       - zizmor
       - package
       - rustfmt
+      - action-test
       - clippy
     # !cancelled() executes the job regardless of whether the previous jobs passed, failed or get skipped.
     if: ${{ !cancelled() }}
@@ -198,4 +199,4 @@ jobs:
           # Print the dependent jobs to see them in the CI log
           printf '%s\n' "$NEEDS_JSON" | jq -C
           # Check if all jobs that we depend on (in the needs array) were successful.
-          printf '%s\n' "$NEEDS_JSON" | jq --exit-status 'all(.result == "success")'
+          printf '%s\n' "$NEEDS_JSON" | jq --exit-status 'all(.result == "success" or .result == "skipped")'
