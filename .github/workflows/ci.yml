@@ -74,6 +74,22 @@ jobs:
           # Instead, fail if there's a security issue.
           advanced-security: false
 
+  npm-install:
+    name: Lockfile up-to-date
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Check if package-lock.json is up-to-date
+        run: |
+          npm install
+
+          # Assert that the git diff is empty.
+          git diff --exit-code || (echo "Git diff is not empty. Please run 'npm install' and commit the changes." && exit 1)
+
   package:
     name: Package
     runs-on: ubuntu-24.04
@@ -184,6 +200,7 @@ jobs:
       - format
       - zizmor
       - package
+      - npm-install
       - rustfmt
       - action-test
       - clippy
