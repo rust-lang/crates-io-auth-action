@@ -9,4 +9,5 @@ export default defineConfig({
     },
     target: "node20",
     clean: true,
+    splitting: true,
 });
