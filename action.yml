@@ -11,7 +11,7 @@ outputs:
     description: "The temporary access token you can use to login with cargo"
     value: ${{ steps.request.outputs.token }}
 branding:
-  icon: "key"
+  icon: "user"
   color: "orange"
 runs:
   using: "node20"
