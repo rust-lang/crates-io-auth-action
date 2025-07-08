@@ -19921,7 +19921,7 @@ function getUserAgent() {
 function runAction(fn) {
   fn().catch((error) => {
     const errorMessage = error instanceof Error ? error.message : String(error);
-    core.setFailed(`Error: ${errorMessage}`);
+    core.setFailed(errorMessage);
   });
 }
 

@@ -22,9 +22,8 @@ async function cleanup() {
   await revokeToken(registryUrl, token);
 }
 async function revokeToken(registryUrl, token) {
-  core.info("Revoking trusted publishing token");
   const tokensEndpoint = _chunk1js.getTokensEndpoint.call(void 0, registryUrl);
-  core.info(`Revoking token at: ${tokensEndpoint}`);
+  core.info(`Revoking trusted publishing token at ${tokensEndpoint}`);
   const response = await fetch(tokensEndpoint, {
     method: "DELETE",
     headers: {
