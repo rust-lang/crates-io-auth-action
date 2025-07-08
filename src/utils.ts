@@ -95,6 +95,6 @@ export function runAction(fn: () => Promise<void>): void {
     fn().catch((error: unknown) => {
         const errorMessage =
             error instanceof Error ? error.message : String(error);
-        core.setFailed(`Error: ${errorMessage}`);
+        core.setFailed(errorMessage);
     });
 }

@@ -27,11 +27,8 @@ export async function cleanup(): Promise<void> {
 }
 
 async function revokeToken(registryUrl: string, token: string): Promise<void> {
-    core.info("Revoking trusted publishing token");
-
     const tokensEndpoint = getTokensEndpoint(registryUrl);
-
-    core.info(`Revoking token at: ${tokensEndpoint}`);
+    core.info(`Revoking trusted publishing token at ${tokensEndpoint}`);
 
     const response = await fetch(tokensEndpoint, {
         method: "DELETE",
