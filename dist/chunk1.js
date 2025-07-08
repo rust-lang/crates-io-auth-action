@@ -19828,7 +19828,7 @@ var core = __toESM(require_core());
 // package.json
 var package_default = {
   name: "crates-io-auth-action",
-  version: "1.0.0",
+  version: "1.0.1",
   description: "Get a temporary access token that you can use to interact with crates.io.",
   private: true,
   scripts: {
