@@ -21,7 +21,7 @@ To install node dependencies, run:
 pnpm install
 ```
 
-### Packaging
+## Packaging
 
 The action code is located in `src/`.
 After editing the code, run the following command to
@@ -41,7 +41,7 @@ we added the `dist/` directory to the [`.gitattributes`](.gitattributes) file wi
 You can learn more about this in the
 [GitHub docs](https://docs.github.com/en/repositories/working-with-files/managing-files/customizing-how-changed-files-appear-on-github).
 
-#### Tree-shaking
+### Tree-shaking
 
 Unfortunately, a bug in the `"@actions/core"` library prevents
 [tree-shaking](https://rollupjs.org/introduction/#tree-shaking) to work.
@@ -56,7 +56,7 @@ Therefore, it is important that `main.ts` and `post.ts` don't depend on each oth
 
 This issue is tracked in [#5](https://github.com/rust-lang/crates-io-auth-action/issues/5).
 
-### Formatting
+## Formatting
 
 We use [Prettier](https://prettier.io/) to format TypeScript, Markdown, and YAML files.
 To format all files, run:
@@ -65,7 +65,7 @@ To format all files, run:
 pnpm prettier --write .
 ```
 
-### Linting
+## Linting
 
 We use [ESLint](https://eslint.org/) for linting TypeScript files.
 
@@ -75,7 +75,7 @@ To check for linting errors, run:
 pnpm eslint
 ```
 
-### Testing
+## Testing
 
 There are two types of tests running in [ci.yml](.github/workflows/ci.yml):
 
