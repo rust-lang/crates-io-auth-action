@@ -102,6 +102,23 @@ Here are some useful links to the GitHub documentation:
 - [Creating a JavaScript action](https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-javascript-action)
 - [OpenID Connect](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
 
+## Publish the action
+
+Once the `main` branch contains the latest changes,
+you can publish a new version of the action by:
+
+- Creating a new tag and release by clicking on "Draft a new release" from the
+  [GitHub releases UI](https://github.com/rust-lang/crates-io-auth-action/releases).
+- Pushing the changes of the `main` branch to the `v1` branch. To do so, you can run:
+
+  ```sh
+  git checkout main
+  git pull
+  git checkout v1
+  git reset --hard main
+  git push
+  ```
+
 ## FAQ
 
 ### Why TypeScript?
