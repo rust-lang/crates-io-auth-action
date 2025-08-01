@@ -23,7 +23,7 @@
     "homepage": "https://github.com/rust-lang/crates-io-auth-action#readme",
     "devDependencies": {
         "@actions/core": "^1.11.1",
-        "@types/node": "^20",
+        "@types/node": "^22.0.0",
         "eslint": "^9.28.0",
         "globals": "^16.3.0",
         "msw": "^2.10.2",
