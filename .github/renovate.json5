@@ -23,6 +23,12 @@
             schedule: "* 6 * * 1",
             groupName: "Github Actions",
         },
+        {
+            packageNames: ["node"],
+            // Disable updates for Node.js because we use the same
+            // version as GitHub Actions.
+            enabled: false,
+        },
     ],
     // Receive any update that fixes security vulnerabilities.
     // We need this because we disabled "patch" updates for Rust.
