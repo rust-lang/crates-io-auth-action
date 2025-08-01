@@ -24,7 +24,7 @@
             groupName: "Github Actions",
         },
         {
-            packageNames: ["node"],
+            packageNames: ["node", "@types/node"],
             // Disable updates for Node.js because we use the same
             // version as GitHub Actions.
             enabled: false,
