@@ -33,6 +33,9 @@ jobs:
           fail: true
           # Accept the HTTP status code 429 (Too Many Requests) to avoid failing the workflow
           # when the rate limit is exceeded.
+          # lychee strictly validates fragments; Zulip fragments are JS-routed and lack HTML anchors,
+          # which leads to false failures. Strip Zulip fragments and check the base URL instead.
+          # See lychee issues: https://github.com/lycheeverse/lychee/issues/1791
           args: |
             --no-progress
             --include-fragments
