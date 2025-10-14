@@ -37,4 +37,5 @@ jobs:
             --no-progress
             --include-fragments
             --accept '100..=103, 200..=299, 429'
+            --remap '(https://rust-lang\.zulipchat\.com[^#]*)#.* $1'
             .
