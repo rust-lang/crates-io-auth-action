@@ -9,7 +9,7 @@ permissions: {}
 
 env:
   # renovate: datasource=npm depName=pnpm
-  PNPM_VERSION: 10.12.4
+  PNPM_VERSION: 10.18.3
 
 jobs:
   test:
