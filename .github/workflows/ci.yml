@@ -16,8 +16,7 @@ jobs:
     name: Test
     runs-on: ubuntu-24.04
     steps:
-      - &checkout
-        name: Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v5
         with:
           persist-credentials: false
@@ -38,7 +37,10 @@ jobs:
     name: Lint
     runs-on: ubuntu-24.04
     steps:
-      - *checkout
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
@@ -56,7 +58,10 @@ jobs:
     name: Format
     runs-on: ubuntu-24.04
     steps:
-      - *checkout
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
@@ -73,7 +78,10 @@ jobs:
     name: Zizmor
     runs-on: ubuntu-24.04
     steps:
-      - *checkout
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Run zizmor
         uses: zizmorcore/zizmor-action@f52a838cfabf134edcbaa7c8b3677dde20045018 # v0.1.1
@@ -87,7 +95,10 @@ jobs:
     name: Package
     runs-on: ubuntu-24.04
     steps:
-      - *checkout
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
@@ -116,7 +127,10 @@ jobs:
       id-token: write # Required for OpenID Connect token retrieval.
 
     steps:
-      - *checkout
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Start mock crates.io server
         run: |
@@ -161,7 +175,10 @@ jobs:
     name: Rustfmt
     runs-on: ubuntu-24.04
     steps:
-      - *checkout
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Check formatting
         run: cargo fmt --all --check
@@ -171,7 +188,10 @@ jobs:
     name: Clippy
     runs-on: ubuntu-24.04
     steps:
-      - *checkout
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Clippy check
         run: cargo clippy --all-targets --all-features --workspace -- -D warnings
