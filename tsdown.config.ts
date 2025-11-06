@@ -11,5 +11,6 @@ export default defineConfig({
     clean: true,
     outputOptions: {
         chunkFileNames: (_) => `chunk${++chunkNumber}.js`,
+        entryFileNames: "[name].js",
     },
 });
