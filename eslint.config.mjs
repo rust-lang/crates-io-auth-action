@@ -13,7 +13,7 @@ export default defineConfig([
     ...tseslint.configs.strict,
     ...tseslint.configs.strictTypeChecked,
     {
-        ignores: ["**/dist", "**/node_modules", "tsup.config.ts"],
+        ignores: ["**/dist", "**/node_modules", "tsdown.config.ts"],
     },
     {
         files: ["src/**/*.ts", "*.mjs"],

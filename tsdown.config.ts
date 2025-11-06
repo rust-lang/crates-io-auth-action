@@ -1,0 +1,15 @@
+import { defineConfig } from "tsdown";
+
+let chunkNumber = 0;
+
+export default defineConfig({
+    entry: ["src/main.ts", "src/post.ts"],
+    format: ["cjs"],
+    outDir: "dist",
+    platform: "node",
+    target: "node20",
+    clean: true,
+    outputOptions: {
+        chunkFileNames: (_) => `chunk${++chunkNumber}.js`,
+    },
+});
