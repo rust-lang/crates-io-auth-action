@@ -2866,7 +2866,7 @@ var require_main = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/@fastify+bus
 		if (typeof opts !== "object") throw new TypeError("Busboy expected an options-Object.");
 		if (typeof opts.headers !== "object") throw new TypeError("Busboy expected an options-Object with headers-attribute.");
 		if (typeof opts.headers["content-type"] !== "string") throw new TypeError("Missing Content-Type-header.");
-		const { headers,...streamOptions } = opts;
+		const { headers, ...streamOptions } = opts;
 		this.opts = {
 			autoDestroy: false,
 			...streamOptions
@@ -5365,7 +5365,7 @@ var require_connect = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/undici@5.
 			this._sessionCache.set(sessionKey, session);
 		}
 	};
-	function buildConnector$4({ allowH2, maxCachedSessions, socketPath, timeout,...opts }) {
+	function buildConnector$4({ allowH2, maxCachedSessions, socketPath, timeout, ...opts }) {
 		if (maxCachedSessions != null && (!Number.isInteger(maxCachedSessions) || maxCachedSessions < 0)) throw new InvalidArgumentError$18("maxCachedSessions must be a positive integer or zero");
 		const options = {
 			path: socketPath,
@@ -6989,7 +6989,7 @@ var require_client = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/undici@5.2
 		}
 		++h2State.openStreams;
 		stream$2.once("response", (headers$1) => {
-			const { [HTTP2_HEADER_STATUS]: statusCode,...realHeaders } = headers$1;
+			const { [HTTP2_HEADER_STATUS]: statusCode, ...realHeaders } = headers$1;
 			if (request$1.onHeaders(Number(statusCode), realHeaders, stream$2.resume.bind(stream$2), "") === false) stream$2.pause();
 		});
 		stream$2.once("end", () => {
@@ -7522,7 +7522,7 @@ var require_pool = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/undici@5.29.
 		return new Client$3(origin, opts);
 	}
 	var Pool$5 = class extends PoolBase$1 {
-		constructor(origin, { connections, factory = defaultFactory$3, connect: connect$2, connectTimeout, tls: tls$2, maxCachedSessions, socketPath, autoSelectFamily, autoSelectFamilyAttemptTimeout, allowH2,...options } = {}) {
+		constructor(origin, { connections, factory = defaultFactory$3, connect: connect$2, connectTimeout, tls: tls$2, maxCachedSessions, socketPath, autoSelectFamily, autoSelectFamilyAttemptTimeout, allowH2, ...options } = {}) {
 			super();
 			if (connections != null && (!Number.isFinite(connections) || connections < 0)) throw new InvalidArgumentError$15("invalid connections");
 			if (typeof factory !== "function") throw new InvalidArgumentError$15("factory must be a function.");
@@ -7593,7 +7593,7 @@ var require_balanced_pool = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/und
 		return new Pool$4(origin, opts);
 	}
 	var BalancedPool$1 = class extends PoolBase {
-		constructor(upstreams = [], { factory = defaultFactory$2,...opts } = {}) {
+		constructor(upstreams = [], { factory = defaultFactory$2, ...opts } = {}) {
 			super();
 			this[kOptions$2] = opts;
 			this[kIndex] = -1;
@@ -7724,7 +7724,7 @@ var require_agent = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/undici@5.29
 		return opts && opts.connections === 1 ? new Client$2(origin, opts) : new Pool$3(origin, opts);
 	}
 	var Agent$4 = class extends DispatcherBase$1 {
-		constructor({ factory = defaultFactory$1, maxRedirections = 0, connect: connect$2,...options } = {}) {
+		constructor({ factory = defaultFactory$1, maxRedirections = 0, connect: connect$2, ...options } = {}) {
 			super();
 			if (typeof factory !== "function") throw new InvalidArgumentError$13("factory must be a function.");
 			if (connect$2 != null && typeof connect$2 !== "function" && typeof connect$2 !== "object") throw new InvalidArgumentError$13("connect must be a function or an object");
@@ -8918,7 +8918,7 @@ var require_mock_utils = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/undici
 	}
 	function buildMockOptions$1(opts) {
 		if (opts) {
-			const { agent,...mockOptions } = opts;
+			const { agent, ...mockOptions } = opts;
 			return mockOptions;
 		}
 	}
@@ -9495,7 +9495,7 @@ var require_RetryHandler = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/undi
 	}
 	var RetryHandler$1 = class RetryHandler$1 {
 		constructor(opts, handlers) {
-			const { retryOptions,...dispatchOpts } = opts;
+			const { retryOptions, ...dispatchOpts } = opts;
 			const { retry: retryFn, maxRetries, maxTimeout, minTimeout, timeoutFactor, methods, errorCodes, retryAfter, statusCodes } = retryOptions ?? {};
 			this.dispatch = handlers.dispatch;
 			this.handler = handlers.handler;

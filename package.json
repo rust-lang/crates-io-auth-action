@@ -24,14 +24,14 @@
     "devDependencies": {
         "@actions/core": "^1.11.1",
         "@types/node": "^20",
-        "eslint": "^9.37.0",
-        "globals": "^16.4.0",
-        "msw": "^2.11.5",
+        "eslint": "^9.39.1",
+        "globals": "^16.5.0",
+        "msw": "^2.12.1",
         "prettier": "^3.6.2",
-        "tsdown": "^0.16.0",
+        "tsdown": "^0.16.4",
         "tslib": "^2.8.1",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.46.1",
-        "vitest": "^4.0.0"
+        "typescript-eslint": "^8.46.4",
+        "vitest": "^4.0.8"
     }
 }
