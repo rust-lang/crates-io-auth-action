@@ -22,16 +22,16 @@
     },
     "homepage": "https://github.com/rust-lang/crates-io-auth-action#readme",
     "devDependencies": {
-        "@actions/core": "^2.0.0",
-        "@types/node": "^20.19.25",
+        "@actions/core": "^2.0.1",
+        "@types/node": "^20.19.26",
         "eslint": "^9.39.1",
         "globals": "^16.5.0",
-        "msw": "^2.12.3",
-        "prettier": "^3.7.1",
-        "tsdown": "^0.17.0",
+        "msw": "^2.12.4",
+        "prettier": "^3.7.4",
+        "tsdown": "^0.17.3",
         "tslib": "^2.8.1",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.48.0",
-        "vitest": "^4.0.14"
+        "typescript-eslint": "^8.49.0",
+        "vitest": "^4.0.15"
     }
 }
