@@ -1,21 +1,20 @@
 const require_utils = require('./chunk1.js');
 
 //#region src/registry_url.ts
-var import_core$1 = /* @__PURE__ */ require_utils.__toESM(require_utils.require_core());
+var import_core = /* @__PURE__ */ require_utils.__toESM(require_utils.require_core());
 function getAudienceFromUrl(url) {
 	const audience = url.replace(/^https?:\/\//, "");
 	if (audience.startsWith("http://") || audience.startsWith("https://")) throw new Error("Bug: The audience should not include the protocol (http:// or https://).");
 	return audience;
 }
 function getRegistryUrl() {
-	const url = import_core$1.getInput("url") || "https://crates.io";
+	const url = import_core.getInput("url") || "https://crates.io";
 	if (url.endsWith("/")) return url.slice(0, -1);
 	return url;
 }
 
 //#endregion
 //#region src/main.ts
-var import_core = /* @__PURE__ */ require_utils.__toESM(require_utils.require_core());
 require_utils.runAction(run);
 async function run() {
 	checkPermissions();
