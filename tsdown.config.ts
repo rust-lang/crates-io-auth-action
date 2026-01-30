@@ -8,6 +8,7 @@ export default defineConfig({
     outDir: "dist",
     platform: "node",
     target: "node20",
+    inlineOnly: false,
     clean: true,
     outputOptions: {
         chunkFileNames: (_) => `chunk${++chunkNumber}.js`,
