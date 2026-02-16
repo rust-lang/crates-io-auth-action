@@ -24,7 +24,7 @@
     "devDependencies": {
         "@actions/core": "^2.0.3",
         "@types/node": "^20.19.30",
-        "eslint": "^9.39.2",
+        "eslint": "^10.0.0",
         "globals": "^17.2.0",
         "msw": "^2.12.7",
         "prettier": "^3.8.1",
