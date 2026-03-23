@@ -7,7 +7,7 @@ export default defineConfig({
     format: ["cjs"],
     outDir: "dist",
     platform: "node",
-    target: "node20",
+    target: "node24",
     inlineOnly: false,
     clean: true,
     outputOptions: {

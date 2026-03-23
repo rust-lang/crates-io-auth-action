@@ -137,7 +137,9 @@ We chose a JavaScript Action for these benefits and use TypeScript for type safe
 
 [runs.post]: https://docs.github.com/en/actions/sharing-automations/creating-actions/metadata-syntax-for-github-actions#runspost
 
-### Why Node 20?
+### Why Node 24?
 
-We use Node 20 because it's the latest Node version supported by GitHub Actions.
+We use Node 24 because it's the
+[latest](https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax#runsusing-for-javascript-actions)
+Node version supported by GitHub Actions.
 The Node version used by this action is specified in the `action.yml` file.
