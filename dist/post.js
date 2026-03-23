@@ -1,5 +1,5 @@
-const require_utils = require('./chunk1.js');
-
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+const require_utils = require("./chunk1.js");
 //#region src/post.ts
 var import_core = /* @__PURE__ */ require_utils.__toESM(require_utils.require_core());
 require_utils.runAction(cleanup);
@@ -25,6 +25,5 @@ async function revokeToken(registryUrl, token) {
 	if (!response.ok) await require_utils.throwHttpErrorMessage("Failed to revoke token", response);
 	import_core.info("Token revoked successfully");
 }
-
 //#endregion
 exports.cleanup = cleanup;

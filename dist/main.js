@@ -1,5 +1,5 @@
-const require_utils = require('./chunk1.js');
-
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+const require_utils = require("./chunk1.js");
 //#region src/registry_url.ts
 var import_core = /* @__PURE__ */ require_utils.__toESM(require_utils.require_core());
 function getAudienceFromUrl(url) {
@@ -12,7 +12,6 @@ function getRegistryUrl() {
 	if (url.endsWith("/")) return url.slice(0, -1);
 	return url;
 }
-
 //#endregion
 //#region src/main.ts
 require_utils.runAction(run);
@@ -57,6 +56,5 @@ function setTokenOutput(token) {
 	import_core.setSecret(token);
 	import_core.setOutput(require_utils.TOKEN_KEY, token);
 }
-
 //#endregion
 exports.run = run;

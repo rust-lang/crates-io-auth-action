@@ -76,7 +76,7 @@ describe("Main Action Tests", () => {
 
     test("permissions check fail if env var not set", async () => {
         // The environment variable `ACTIONS_ID_TOKEN_REQUEST_URL` is not set.
-        await expect(main.run()).rejects.toThrowError(
+        await expect(main.run()).rejects.toThrow(
             "Please ensure the 'id-token' permission is set to 'write' in your workflow. For more information, see: https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/about-security-hardening-with-openid-connect#adding-permissions-settings",
         );
     });
@@ -87,7 +87,7 @@ describe("Main Action Tests", () => {
         // Mock getIDToken to return empty string
         vi.mocked(core.getIDToken).mockResolvedValue("");
 
-        await expect(main.run()).rejects.toThrowError(
+        await expect(main.run()).rejects.toThrow(
             "Failed to retrieve JWT token from GitHub Actions",
         );
     });
@@ -116,7 +116,7 @@ describe("Main Action Tests", () => {
             }),
         ]);
 
-        await expect(main.run()).rejects.toThrowError(
+        await expect(main.run()).rejects.toThrow(
             `Failed to retrieve token from Cargo registry. Status: 400. Error: No matching Trusted Publishing config found`,
         );
 
