@@ -3,6 +3,7 @@
     "version": "1.0.1",
     "description": "Get a temporary access token that you can use to interact with crates.io.",
     "private": true,
+    "type": "module",
     "scripts": {
         "package": "tsdown",
         "format": "prettier --write .",
@@ -22,7 +23,7 @@
     },
     "homepage": "https://github.com/rust-lang/crates-io-auth-action#readme",
     "devDependencies": {
-        "@actions/core": "^2.0.3",
+        "@actions/core": "^3.0.0",
         "@types/node": "^24.12.0",
         "eslint": "^10.1.0",
         "globals": "^17.4.0",
