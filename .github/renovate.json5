@@ -9,14 +9,14 @@
     packageRules: [
         {
             matchCategories: ["javascript", "typescript"],
-            updateTypes: ["patch"],
+            matchUpdateTypes: ["patch"],
             // Disable patch updates for single dependencies because patches
             // are updated periodically with lockfile maintainance.
             enabled: false,
         },
         {
             matchCategories: ["rust"],
-            updateTypes: ["patch"],
+            matchUpdateTypes: ["patch"],
             // Disable patch updates for single dependencies because patches
             // are updated periodically with lockfile maintainance.
             enabled: false,
