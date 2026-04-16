@@ -1,25 +1,8 @@
 {
     $schema: "https://docs.renovatebot.com/renovate-schema.json",
-    extends: [
-        "config:recommended",
-        ":maintainLockFilesMonthly",
-        "helpers:pinGitHubActionDigestsToSemver",
-    ],
+    extends: ["github>rust-lang/renovate"],
     automerge: true,
     packageRules: [
-        {
-            matchCategories: ["rust", "javascript", "typescript"],
-            matchJsonata: ["isBreaking != true"],
-            // Disable non-breaking change updates because they
-            // are updated periodically with lockfile maintainance.
-            enabled: false,
-        },
-        {
-            matchManagers: ["github-actions"],
-            // Every weekend
-            schedule: "* * * * 0,6",
-            groupName: "Github Actions",
-        },
         {
             packageNames: ["node", "@types/node"],
             // Disable updates for Node.js because we use the same
@@ -27,12 +10,4 @@
             enabled: false,
         },
     ],
-    // Receive any update that fixes security vulnerabilities.
-    // We need this because we disabled "patch" updates for Rust.
-    // Note: You need to enable "Dependabot alerts" in "Code security" GitHub
-    // Settings to receive security updates.
-    // See https://docs.renovatebot.com/configuration-options/#vulnerabilityalerts
-    vulnerabilityAlerts: {
-        enabled: true,
-    },
 }
