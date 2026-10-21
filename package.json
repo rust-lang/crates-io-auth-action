@@ -24,15 +24,15 @@
     "homepage": "https://github.com/rust-lang/crates-io-auth-action#readme",
     "devDependencies": {
         "@actions/core": "^3.0.1",
-        "@types/node": "^24.12.3",
-        "eslint": "^10.3.0",
-        "globals": "^17.6.0",
-        "msw": "^3.0.0",
-        "prettier": "^3.8.3",
-        "tsdown": "^0.22.0",
+        "@types/node": "^24.19.2",
+        "eslint": "^10.13.0",
+        "globals": "^17.13.0",
+        "msw": "^3.0.3",
+        "prettier": "^3.9.10",
+        "tsdown": "^0.23.1",
         "tslib": "^2.8.1",
         "typescript": "^6.0.3",
-        "typescript-eslint": "^8.59.3",
-        "vitest": "^5.0.0"
+        "typescript-eslint": "^8.72.0",
+        "vitest": "^5.0.5"
     }
 }

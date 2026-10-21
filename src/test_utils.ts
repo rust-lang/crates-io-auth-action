@@ -3,7 +3,7 @@ import * as msw from "msw/node";
 
 export function startMockServer(handlers: RequestHandler[]): msw.SetupServer {
     const server = msw.setupServer(...handlers);
-    server.listen({ onUnhandledRequest: "error" });
+    server.listen({ onUnhandledFrame: "error" });
     return server;
 }
 
